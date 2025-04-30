@@ -3,73 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Melvin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Resources & Tools</title>
     <style>
-        .resources-container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: auto;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
-    text-align: center;
-}
+        .links-container {
+            max-width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
 
-.resources-container h2 {
-    color: #ffcc00;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
 
-.resources-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
+        .links-grid a {
+            flex: 1 1 calc(50% - 10px); /* Makes links evenly distribute */
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            border-radius: 5px;
+            background-color: #f3f3f3;
+            text-decoration: none;
+        }
 
-.resources-grid a {
-    background: #333;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-}
-
-.resources-grid a:hover {
-    background: #ffcc00;
-    color: black;
-}
+        @media (max-width: 600px) {
+            .links-grid a {
+                flex: 1 1 100%; /* Stacks links on smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
- <div class="resources-container">
- <h2>Resources & Tools</h2>
- <div class="resources-grid">
-     <a href="https://dl.malwarewatch.org/"> Software and Archive by Enderman</a>
+
+<div class="links-container">
+    <h2>Resources & Tools</h2>
+    <div class="links-grid">
+        <a href="https://www.pexels.com/@melvin-binesh-756164389/" target="_blank">📷 My Pexels</a>
+        <a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8" target="_blank">🎵 Favorite Music</a>
         <a href="https://git.gay/n" target="_blank">🛠 XToolbox by Xemulat</a>
         <a href="https://pixel31.github.io/" target="_blank">🖼 Pixel Toolbox by Pixel</a>
-        <a href="https://reunion7.com/index.html" target="_blank"> 🪟 Windows 7 </a>
-        <a href="https://eaglercraft.com/" target="_blank">🎮 Online Minecraft</a>
-         <a href="https://webamp.org/"> WebAmp</a>
+        <a href="https://github.com/AlanFinotty/AAFOptimusDCHAudio-Realtek/releases" target="_blank">🎧 Realtek Audio Driver Mod</a>
+        <a href="https://github.com/AlanFinotty/AAFOptimusDCHAudio-Generic" target="_blank">🎼 Generic Audio Driver Mod</a>
     </div>
-</div>
-
-
-<div class="container">
-    <h1>About Me</h1>
-    <p><strong>Name:</strong> Melvin</p>
-    <p><strong>Bio:</strong> Photographer, IT Enthusiast</p>
-
-    <h2>Links</h2>
-    <p><a href="https://www.pexels.com/@melvin-binesh-756164389/">My Pexels</a></p>
-    <p><a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8">Favorite Music</a></p>
-
-    <p>Website Version: 0.2.2 (Alpha)</p>
-    <p>Contact: <a href="mailto:melvin.bt09@icloud.com">melvin.bt09@icloud.com</a></p>
 </div>
 
 </body>
