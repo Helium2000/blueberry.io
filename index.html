@@ -11,6 +11,15 @@
             padding: 10px;
         }
 
+        .search-box {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         .links-grid {
             display: flex;
             flex-wrap: wrap;
@@ -19,7 +28,7 @@
         }
 
         .links-grid a {
-            flex: 1 1 calc(50% - 10px); /* Makes links evenly distribute */
+            flex: 1 1 calc(50% - 10px);
             padding: 10px;
             text-align: center;
             font-size: 1rem;
@@ -30,15 +39,30 @@
 
         @media (max-width: 600px) {
             .links-grid a {
-                flex: 1 1 100%; /* Stacks links on smaller screens */
+                flex: 1 1 100%;
             }
         }
     </style>
+    <script>
+        function searchLinks() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let links = document.querySelectorAll('.links-grid a');
+
+            links.forEach(link => {
+                if (link.textContent.toLowerCase().includes(input)) {
+                    link.style.display = "block";
+                } else {
+                    link.style.display = "none";
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
 <div class="links-container">
     <h2>Resources & Tools</h2>
+    <input type="text" id="search" class="search-box" placeholder="Search resources..." onkeyup="searchLinks()">
     <div class="links-grid">
         <a href="https://www.pexels.com/@melvin-binesh-756164389/" target="_blank">📷 My Pexels</a>
         <a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8" target="_blank">🎵 Favorite Music</a>
