@@ -7,12 +7,49 @@
     <title>About Melvin</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-.links-container {
+/* Existing CSS */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('https://i.imgur.com/Hog0EKH.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh; /* Ensure body takes full height for centering */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+.container {
     background: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 10px;
     max-width: 600px;
     margin: auto;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+    position: relative; /* Needed for z-index and potential overlays */
+    z-index: 1; /* Ensure container is above other elements if any */
+}
+h1, p {
+    margin: 10px 0;
+}
+a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    color: #ff9900;
+}
+
+.links-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto 0; /* Adjusted margin for spacing */
     box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
     text-align: center;
 }
@@ -45,39 +82,193 @@
     color: black;
 }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-image: url('https://i.imgur.com/Hog0EKH.jpeg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
-        }
-        h1, p {
-            margin: 10px 0;
-        }
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #ff9900;
-        }
+/* Contact Form Specific Styles */
+.contact-form {
+    text-align: left;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative; /* For the expanding card */
+    z-index: 1; /* To ensure it's above other elements if needed */
+}
+
+.contact-form h2 {
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ffcc00;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Styles for the Animated Contact Button and Card */
+.contact-button-wrapper {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2; /* Make sure the button is above content initially */
+}
+
+#contactMeBtn {
+    background: #ffcc00;
+    color: black;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out; /* Smooth transition for enlargement */
+    position: relative;
+    z-index: 3; /* Ensure button is on top */
+}
+
+/* Initial state of the contact card - hidden and collapsed */
+#interactiveCard {
+    background: rgba(0, 0, 0, 0.9); /* Darker background for the card */
+    padding: 0; /* Start with no padding */
+    border-radius: 10px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.8);
+    position: fixed; /* Fix it on the screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Start scaled to 0 */
+    opacity: 0; /* Start invisible */
+    width: 80%; /* Max width for the card */
+    max-width: 500px;
+    height: auto; /* Will expand with content */
+    z-index: 1000; /* High z-index to be on top of everything */
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out, padding 0.6s ease-out; /* Smooth transitions */
+    overflow: hidden; /* Hide overflow during animation */
+    pointer-events: none; /* Make it unclickable when hidden */
+    text-align: center; /* Center content within card */
+}
+
+#interactiveCard.active {
+    transform: translate(-50%, -50%) scale(1); /* Scale to full size */
+    opacity: 1; /* Make visible */
+    padding: 30px; /* Expand padding */
+    pointer-events: auto; /* Make it clickable when active */
+}
+
+#interactiveCard h3 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+#interactiveCard .card-content {
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+#interactiveCard.active .card-content {
+    display: block; /* Show content when active */
+    opacity: 1;
+    transition-delay: 0.3s; /* Delay showing content until after scaling */
+}
+
+#interactiveCard .card-content p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#interactiveCard .card-content .social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    color: white;
+    font-size: 30px;
+    transition: color 0.3s ease;
+}
+
+#interactiveCard .card-content .social-icons a:hover {
+    color: #ffcc00;
+}
+
+.close-card {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.close-card:hover {
+    color: #ffcc00;
+}
+
+/* Overlay for background blur/darken */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    backdrop-filter: blur(5px); /* Blur effect */
+    z-index: 999; /* Below the card, above everything else */
+    opacity: 0;
+    pointer-events: none; /* Don't block clicks when hidden */
+    transition: opacity 0.6s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Block clicks when active */
+}
+
+/* Hide the direct email link when the card is active */
+.container p:last-of-type a {
+    transition: opacity 0.3s ease;
+}
+.container.card-active p:last-of-type a {
+    opacity: 0;
+    pointer-events: none;
+}
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="overlay" id="overlay"></div>
+
+<div class="container" id="mainContainer">
     <h1>About Me</h1>
     <p><strong>Name:</strong> Melvin Binesh</p>
     <p><strong>Bio:</strong> Photographer, IT Enthusiast</p>
@@ -87,20 +278,106 @@
     <p><a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8">Favorite Music</a></p>
     <p><a href="https://instagram.com/blu.erries">My Instagram</a></p>
 
+    <div class="links-container">
+        <h2>Resources & Tools</h2>
+        <div class="links-grid">
+            <a href="https://www.pexels.com/@melvin-binesh-756164389/" target="_blank">📷 My Pexels</a>
+            <a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8" target="_blank">🎵 Favorite Music</a>
+            <a href="https://git.gay/n" target="_blank">🛠 XToolbox by Xemulat</a>
+            <a href="https://pixel31.github.io/" target="_blank">🖼 Pixel Toolbox by Pixel</a>
+            <a href="https://dl.malwarewatch.org/" target="_blank"> Software and Archive</a>
+            <a href="https://eaglercraft.com/" target="_blank"> Minecraft Online</a>
+        </div>
+    </div>
+
     <p>Website Version: 1.0 (Stable)</p>
     <p>Contact: <a href="mailto:melvin.bt09@icloud.com">melvin.bt09@icloud.com</a></p>
-    <div class="links-container">
-    <h2>Resources & Tools</h2>
-    <div class="links-grid">
-        <a href="https://www.pexels.com/@melvin-binesh-756164389/" target="_blank">📷 My Pexels</a>
-        <a href="https://on.soundcloud.com/syMQ8JMw7wj83xMZ8" target="_blank">🎵 Favorite Music</a>
-        <a href="https://git.gay/n" target="_blank">🛠 XToolbox by Xemulat</a>
-        <a href="https://pixel31.github.io/" target="_blank">🖼 Pixel Toolbox by Pixel</a>
-        <a href="https://dl.malwarewatch.org/" target="_blank"> Software and Archive</a>
-        <a href="https://eaglercraft.com/" target="_blank"> Minecraft Online</a>
+
+    <div class="contact-button-wrapper">
+        <button id="contactMeBtn">Contact Melvin</button>
     </div>
 </div>
 
+<div id="interactiveCard">
+    <button class="close-card" id="closeCardBtn">&times;</button>
+    <div class="card-content">
+        <h3>Get In Touch!</h3>
+        <p>Feel free to reach out to me via email or connect on social media:</p>
+
+        <p><strong>Email:</strong> <a href="mailto:melvin.bt09@icloud.com" style="color: #ffcc00;">melvin.bt09@icloud.com</a></p>
+
+        <div class="contact-form" style="margin-top: 20px; border-top: none;">
+            <h4>Send a Quick Message:</h4>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_CODE" method="POST">
+                <label for="card-name">Name:</label>
+                <input type="text" id="card-name" name="name" required>
+
+                <label for="card-email">Email:</label>
+                <input type="email" id="card-email" name="email" required>
+
+                <label for="card-message">Message:</label>
+                <textarea id="card-message" name="message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://instagram.com/blu.erries" target="_blank" title="Instagram">📸</a>
+            <a href="https://www.linkedin.com/in/melvin-binesh-9080a22a3/" target="_blank" title="LinkedIn">🔗</a>
+            </div>
+    </div>
+</div>
+
+<script>
+    const contactMeBtn = document.getElementById('contactMeBtn');
+    const interactiveCard = document.getElementById('interactiveCard');
+    const closeCardBtn = document.getElementById('closeCardBtn');
+    const overlay = document.getElementById('overlay');
+    const mainContainer = document.getElementById('mainContainer'); // Reference to the main content container
+
+    // Function to open the card
+    function openCard() {
+        interactiveCard.classList.add('active');
+        overlay.classList.add('active');
+        // Add a class to the main container to optionally hide/dim its content
+        mainContainer.classList.add('card-active');
+    }
+
+    // Function to close the card
+    function closeCard() {
+        interactiveCard.classList.remove('active');
+        overlay.classList.remove('active');
+        mainContainer.classList.remove('card-active');
+    }
+
+    // Event listener for the "Contact Melvin" button
+    contactMeBtn.addEventListener('click', openCard);
+
+    // Event listener for the close button inside the card
+    closeCardBtn.addEventListener('click', closeCard);
+
+    // Event listener for clicking on the overlay to close the card
+    overlay.addEventListener('click', closeCard);
+
+    // Optional: Close card with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && interactiveCard.classList.contains('active')) {
+            closeCard();
+        }
+    });
+
+    // Handle form submission (Optional, if using client-side validation/feedback)
+    // const cardForm = document.querySelector('#interactiveCard form');
+    // cardForm.addEventListener('submit', function(e) {
+    //     // e.preventDefault(); // Prevent default form submission for now
+    //     // You would typically handle AJAX submission here
+    //     // alert('Form submitted! (This is a placeholder, actual submission needs backend)');
+    //     // Optionally close the card after submission feedback
+    //     // closeCard();
+    // });
+
+</script>
 
 </body>
 </html>
